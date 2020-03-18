@@ -1,7 +1,7 @@
 <?php
 $is_auth = rand(0, 1);
 
-$user_name = ''; // укажите здесь ваше имя
+$user_name = 'Виктор'; // укажите здесь ваше имя
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -27,9 +27,26 @@ $user_name = ''; // укажите здесь ваше имя
         <a class="main-header__add-lot button" href="pages/add-lot.html">Добавить лот</a>
 
         <nav class="user-menu">
-
-        <!-- здесь должен быть PHP код для показа меню и данных пользователя -->
-
+		<?php>
+		if ($is_auth == 1){
+		<div class="user-menu_image">
+          <img src="img/user.jpg" width="40" height="40" alt="Пользователь">
+        </div>
+        <div class="user-menu_logged">
+        <p>Виктор</p>
+        </div>		
+		} elseif{
+		<ul class="user-menu_list">	
+		<li class="user-menu_item">
+		 <a href="#">Регистрация</a>
+		 </li>
+		<li class="user-menu_item">
+		 <a href="#">Вход</a>
+		 </li>
+		</ul>
+		}
+		?>
+		<!-- здесь должен быть PHP код для показа меню и данных пользователя -->
         </nav>
     </div>
 </header>
