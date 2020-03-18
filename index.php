@@ -1,7 +1,16 @@
 <?php
 $is_auth = rand(0, 1);
 
-$user_name = 'Виктор'; // укажите здесь ваше имя
+$user_name = 'Rocobarocco'; // укажите здесь ваше имя
+$Category=array("boards"=>"Доски и лыжи","bracing"=>"Крепления","boots"=>"Ботинки","clothes"=>"Одежда","tools"=>"Инструменты","different"=>"Разное");
+$tovary=array(array ("Name"=>"Сноуборд Jones Stratos LTD W", "Cattegory"=> "Доски и лыжи", "Price"=>"10999", "Image"=>"img/lot-1.jpg"),
+array ("Name"=>"Сноуборд NIDECKER Merc 2019-20", "Cattegory"=> "Доски и лыжи", "Price"=>"155999", "Image"=>"img/lot-2.jpg"),
+array ("Name"=>"Крепления Salomon 2019-20 Pact Black ", "Cattegory"=> "Крепления", "Price"=>"8000", "Image"=>"img/lot-3.jpg"),
+array ("Name"=>"Ботинки Для Сноуборда NIDECKER 2019-20 onyx slate", "Cattegory"=> "Ботинки", "Price"=>"10999", "Image"=>"img/lot-4.jpg"),
+array ("Name"=>"Куртка для сноуборда Burton Frostner JK", "Cattegory"=> "Одежда", "Price"=>"7500", "Image"=>"img/lot-5.jpg"),
+array ("Name"=>"Маска Electric KLEVELAND ", "Cattegory"=> "Разное", "Price"=>"5400", "Image"=>"img/lot-6.jpg"));
+
+$rows=6;
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -27,26 +36,24 @@ $user_name = 'Виктор'; // укажите здесь ваше имя
         <a class="main-header__add-lot button" href="pages/add-lot.html">Добавить лот</a>
 
         <nav class="user-menu">
-		<?php>
-		if ($is_auth == 1){
-		<div class="user-menu_image">
-          <img src="img/user.jpg" width="40" height="40" alt="Пользователь">
-        </div>
-        <div class="user-menu_logged">
-        <p>Виктор</p>
-        </div>		
-		} elseif{
-		<ul class="user-menu_list">	
-		<li class="user-menu_item">
-		 <a href="#">Регистрация</a>
-		 </li>
-		<li class="user-menu_item">
-		 <a href="#">Вход</a>
-		 </li>
-		</ul>
-		}
-		?>
 		<!-- здесь должен быть PHP код для показа меню и данных пользователя -->
+		<?php if($is_auth) { ?>
+       <div class="user-menu__image">
+        <img src="img/user.jpg" width="40" height="40" alt="Пользователь">
+       </div>
+       <div class="user-menu__logged">
+        <p><?=$user_name?></p>
+       </div>
+       <?php } else { ?>
+        <ul class="user-menu__list">
+        <li class="user-menu__item">
+        <a href="#">Регистрация</a>
+        </li>
+        <li class="user-menu__item">
+        <a href="#">Вход</a>
+        </li>
+        </ul>
+        <?php } ?>
         </nav>
     </div>
 </header>
@@ -68,17 +75,20 @@ $user_name = 'Виктор'; // укажите здесь ваше имя
         </div>
         <ul class="lots__list">
             <!--заполните этот список из массива с товарами-->
+			<?php foreach($tovary as $tovar): ?>
+			
+			   
             <li class="lots__item lot">
                 <div class="lot__image">
-                    <img src="" width="350" height="260" alt="">
+                    <img src="<?=$tovar["Image"]?>" width="350" height="260" alt="">
                 </div>
                 <div class="lot__info">
-                    <span class="lot__category">Название категории</span>
-                    <h3 class="lot__title"><a class="text-link" href="pages/lot.html">Название товара</a></h3>
+                    <span class="lot__category"><?=$tovar["Cattegory"] /*Название категории*/?></span>
+                    <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?=$tovar["Name"] /*Название товара*/?></a></h3>
                     <div class="lot__state">
                         <div class="lot__rate">
-                            <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost">цена<b class="rub">р</b></span>
+                            <span class="lot__amount"><?=$tovar["Price"] /*Стартовая цена*/?></span>
+                            <span class="lot__cost"><?=$tovar["Price"] /*цена*/?><b class="rub">р</b></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
@@ -86,6 +96,7 @@ $user_name = 'Виктор'; // укажите здесь ваше имя
                     </div>
                 </div>
             </li>
+			<?php endforeach;?>
         </ul>
     </section>
 </main>
