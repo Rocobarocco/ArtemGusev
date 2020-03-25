@@ -79,4 +79,15 @@ function sum_format($number, $withRubleElem = true)
     }
 }
 
+function LTime(){
+$Now=strtotime("now");
+$Tomorrow=strtotime("tomorrow");
+$R=$Tomorrow-$Now;
+$H=floor($R/3600);
+$M=floor(($R-$H*3600)/60);
+$T=sprintf("%02d:%02d", $H, $M);
+return $T;
+}
+
+
 ?>

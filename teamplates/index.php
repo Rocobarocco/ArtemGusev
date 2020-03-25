@@ -30,8 +30,8 @@
                             <span class="lot__cost"><?=sum_format($advertiseme["price"], true)?></span>
                         </div>
                         <div class="lot__timer timer">
-                            12:23
-                        </div>
+                         <?=LTime()?>
+                         </div>
                     </div>
                 </div>
             </li>
